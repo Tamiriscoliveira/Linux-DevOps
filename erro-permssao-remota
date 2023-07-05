@@ -1,0 +1,19 @@
+Erro de permissão para execução remota 
+#sudo: sinto muito, você deve ter um tty para executar sudo
+
+Para contornamos este problema, será necessário permitir que o sudo seja executado sem a existência de um terminal. 
+
+Para tanto, devemos criar um arquivo em /etc/sudoers.d:
+sudo vim /etc/sudoers.d/nome_do_usuario Dentro deste arquivo, basta inserir a seguinte linha:
+Defaults:nome_do_usuario !requiretty.
+
+Ex: cat /etc/sudoers.d/jenkins 
+    Defaults:jenkins !requiretty
+
+Fazendo isso, estamos dizendo que o usuário nome_do_usuario pode executar o sudo sem um terminal.
+
+É importante não liberar o uso de sudo remotamente para todos usuários, isto é uma falha de segurança. 
+Libere somente para quem realmente precisa.
+
+Além de criar o arquivo com permissão remota,será necessário adicionar o usuário de compilação
+Do GOCD no arquivo /etc/sudoers da seguinte maneira  %go ALL=(ALL) NOPASSWD:ALL após isso salve o arquivo.
