@@ -1,0 +1,44 @@
+Ao tentar habilitar o repositório  rhel-7-server-extras-rpms no CentOS Linux release 7.9.2009, para instalação do ansible a seguinte mensagem de erro no gerenciador 
+de assinatura impedia.
+
+#sudo subscription-manager repos --enable rhel-7-server-ansible-2.9-rpms
+#sudo: subscription-manager: command not found
+
+Ao verificar no PATH e os diretórios /sbin e /usr/sbin o subscription-manager estava ausente.
+
+Efetuado a habilitação do repositório EPEL e o Update do sistema
+
+O Repositório EPEL para distribuições baseadas em RedHat para instalação de pacotes de software de
+código aberto utilizando os gerenciadores de pacotes YUM e DNF.
+o que é epel
+EPEL (Extra Packages for Enterprise Linux) é um projeto de repositório comunitário gratuito e de 
+código aberto da equipe Fedora que fornece pacotes de software complementares 100% de alta qualidade 
+para distribuição Linux, baseada em Red Hat Enterprise. 
+O projeto EPEL não faz parte do RHEL/CentOS , mas foi projetado para as principais distribuições Linux, 
+fornecendo muitos pacotes de código aberto, como ferramentas de rede , ferramentas sysadmin , 
+programação, monitoramento e assim por diante. 
+O repositório Epel é 100% de código aberto e de uso gratuito.
+
+#sudo yum install epel-release
+#sudo yum update -y
+
+Efetuado a instalação do gerenciador de assinatura
+#yum install subscription-manager
+
+Habilitação do repositório para instalação 
+#sudo subscription-manager repos --enable rhel-7-server-ansible-2.9-rpms
+
+Instalação do Ansible
+#yum install ansible
+
+Verificando a versão do ansible instalada
+#ansible --version
+ansible 2.9.27
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible
+  python version = 2.7.5 (default, Jun 20 2023, 11:36:40) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+
+
+
